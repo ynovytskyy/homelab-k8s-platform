@@ -1,0 +1,17 @@
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Ignore transient lock info files created by terraform apply
+.terraform.tfstate.lock.info
+.terraform.lock.hcl
+
+# .tfvars files
+*.tfvars
