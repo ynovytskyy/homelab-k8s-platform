@@ -21,4 +21,4 @@ proxmox_vms_talos = {
   }
 }
 
-metallb_pool_addresses = "192.168.1.180-192.168.2.199"
+metallb_pool_addresses = "192.168.1.180-192.168.1.199"
