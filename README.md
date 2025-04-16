@@ -7,7 +7,7 @@ reproduceably as possible - with a single terraform apply command.
 
 ```shell
 terraform init
-terraform apply -var-file=moria.tfvars
+terraform apply -var-file=example.tfvars
 mkdir ~/.kube
 terraform output -raw kube_config > $HOME/.kube/config
 kubectl get nodes
