@@ -3,7 +3,7 @@
 <img src="https://github.com/user-attachments/assets/d16c737e-9d19-42d7-b527-623f89fc9cd8" height="600"/>
 
 Proxmox-based HomeLab setup to reach Kubernetes as a Platform abstraction level as efficiently and 
-reproduceably as possible - with a single terraform apply command. 
+reproduceably as possible - with a single terraform apply command: [link to article](https://ynovytskyy.medium.com/homelab-kubernetes-platform-with-a-single-terraform-apply-821cd766a2eb).
 
 ```shell
 terraform init
