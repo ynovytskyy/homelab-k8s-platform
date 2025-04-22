@@ -12,3 +12,9 @@ variable "domain_name" {
   type        = string
   description = "Domain name to create (with namespaces per environment)"
 }
+
+variable "environments" {
+  type        = list(string)
+  description = "List of environments to create namespaces for"
+  default     = ["dev", "prod"]
+}

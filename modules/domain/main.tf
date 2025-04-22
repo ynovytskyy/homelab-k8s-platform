@@ -14,24 +14,14 @@ provider "kubernetes" {
   client_certificate     = base64decode(var.kubernetes_config.client_certificate)
 }
 
-resource "kubernetes_namespace" "namespace_prod" {
-  metadata {
-    name = "prod-${var.domain_name}"
-    labels = {
-      "app.kubernetes.io/managed-by" = "terraform"
-      "environment" = "prod"
-      "istio-injection" = "enabled"
-      "pod-security.kubernetes.io/enforce" = "privileged"
-    }
-  }
-}
+resource "kubernetes_namespace" "namespace" {
+  for_each = toset(var.environments)
 
-resource "kubernetes_namespace" "namespace_dev" {
   metadata {
-    name = "dev-${var.domain_name}"
+    name = "${each.value}-${var.domain_name}"
     labels = {
       "app.kubernetes.io/managed-by" = "terraform"
-      "environment" = "dev"
+      "environment" = each.value
       "istio-injection" = "enabled"
       "pod-security.kubernetes.io/enforce" = "privileged"
     }

@@ -58,4 +58,5 @@ module "domain" {
   }
 
   domain_name = "echo"
+  environments = ["dev", "prod"]  # Explicitly set the environments
 }
