@@ -47,6 +47,10 @@ module "metallb" {
   metallb_pool_addresses = var.metallb_pool_addresses # e.g. "192.168.1.100-192.168.1.199"
 }
 
+locals {
+  environments = ["dev", "prod"]
+}
+
 module "domain" {
   source = "./modules/domain"
 
@@ -58,5 +62,21 @@ module "domain" {
   }
 
   domain_name = "echo"
-  environments = ["dev", "prod"]  # Explicitly set the environments
+  environments = local.environments
+}
+
+module "application_echo" {
+  source = "./modules/application"
+
+  kubernetes_config = {
+    host = module.proxmox_talos.kube_client_config.host
+    cluster_ca_certificate = module.proxmox_talos.kube_client_config.ca_certificate
+    client_key = module.proxmox_talos.kube_client_config.client_key
+    client_certificate = module.proxmox_talos.kube_client_config.client_certificate
+  }
+
+  application_name = "echo"
+  application_repository_url = "https://github.com/ynovytskyy/homelab-moria-echo.git"
+  destination_namespace_base_name = "echo"
+  environments = local.environments
 }

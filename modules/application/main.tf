@@ -32,11 +32,11 @@ resource "kubernetes_manifest" "argocd_application" {
       project = "default"
       source = {
         repoURL        = var.application_repository_url
-        path          = var.application_repository_path
+        path          = "${var.application_repository_base_path}/${each.value}"
         targetRevision = var.target_revision
       }
       destination = {
-        namespace = "${var.destination_namespace}-${each.value}"
+        namespace = "${each.value}-${var.destination_namespace_base_name}"
         server    = var.destination_server
       }
       syncPolicy = {

@@ -24,7 +24,7 @@ variable "application_repository_url" {
   description = "Git repository URL for the application"
 }
 
-variable "application_repository_path" {
+variable "application_repository_base_path" {
   type        = string
   description = "Path within the repository where the Kubernetes manifests are located"
   default     = "deploy"
@@ -36,7 +36,7 @@ variable "target_revision" {
   default     = "HEAD"
 }
 
-variable "destination_namespace" {
+variable "destination_namespace_base_name" {
   type        = string
   description = "Target namespace for the application"
 }
