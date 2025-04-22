@@ -46,3 +46,16 @@ module "metallb" {
   metallb_version = "0.14.9"
   metallb_pool_addresses = var.metallb_pool_addresses # e.g. "192.168.1.100-192.168.1.199"
 }
+
+module "domain" {
+  source = "./modules/domain"
+
+  kubernetes_config = {
+    host = module.proxmox_talos.kube_client_config.host
+    cluster_ca_certificate = module.proxmox_talos.kube_client_config.ca_certificate
+    client_key = module.proxmox_talos.kube_client_config.client_key
+    client_certificate = module.proxmox_talos.kube_client_config.client_certificate
+  }
+
+  domain_name = "echo"
+}
