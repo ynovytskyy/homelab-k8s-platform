@@ -47,6 +47,17 @@ module "metallb" {
   metallb_pool_addresses = var.metallb_pool_addresses # e.g. "192.168.1.100-192.168.1.199"
 }
 
+module "istio" {
+  source = "./modules/istio"
+  kube_host = module.proxmox_talos.kube_client_config.host
+  kube_cluster_ca_certificate = module.proxmox_talos.kube_client_config.ca_certificate
+  kube_client_key = module.proxmox_talos.kube_client_config.client_key
+  kube_client_certificate = module.proxmox_talos.kube_client_config.client_certificate
+
+  istio_version = "1.25.2"
+  istio_external_gateway_host = var.istio_external_gateway_host
+}
+
 locals {
   environments = ["dev", "prod"]
 }

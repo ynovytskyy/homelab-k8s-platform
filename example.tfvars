@@ -22,3 +22,5 @@ proxmox_vms_talos = {
 }
 
 metallb_pool_addresses = "192.168.1.180-192.168.1.199"
+
+istio_external_gateway_host = "api.example.com"

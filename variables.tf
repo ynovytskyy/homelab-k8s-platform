@@ -27,3 +27,6 @@ variable "proxmox_vms_default_gateway" {
 variable "metallb_pool_addresses" {
   type = string
 }
+variable "istio_external_gateway_host" {
+  type = string
+}
